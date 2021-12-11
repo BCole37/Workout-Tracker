@@ -12,14 +12,23 @@ module.exports = function(app) {
           res.sendFile(path.join(__dirname, '../public/stats.html'));
      });
 
+         // API Routes
+
     app.get('/api/workouts', function(req, res) {
-        Workout.find({})
-        .then(function(workout) {
-         res.json(workout);
-        });
+        Workout.aggregate([
+            {
+                $addFields: {
+                    totalDuration: {
+                        $sum: "$exercises.duration",
+                    },
+                },
+            },
+        ])
+            .then((workout) => {
+                res.json(workout);
+            });
     });
 
-    // API Routes
     app.put('/api/workouts/:id', function(req, res) {
         Workout.findByIdAndUpdate(req.params.id, { $push: { exercises: req.body }})
         .then(function(workout) {
@@ -44,9 +53,9 @@ module.exports = function(app) {
                 },
             },
         ])
-          .then((workout) => {
+        .then(function(workout) {
             res.json(workout);
-        })  
+        });
     })
    
 };
