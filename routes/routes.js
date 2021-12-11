@@ -17,9 +17,7 @@ module.exports = function(app) {
         .then(function(workout) {
          res.json(workout);
         });
-    }).catch((err) => {
-            res.json(err);
-        });
+    });
 
     // API Routes
     app.put('/api/workouts/:id', function(req, res) {
@@ -27,16 +25,12 @@ module.exports = function(app) {
         .then(function(workout) {
             res.json(workout);
         })
-    }).catch((err) => {
-        res.json(err);
     });
 
     app.post('/api/workouts', function({ body }, res) {
         Workout.create(body)
         .then(function(workout) {
             res.json(workout);
-        }).catch((err) => {
-            res.json(err);
         });
     })
 
@@ -55,9 +49,6 @@ module.exports = function(app) {
             .sort({ day: 1 })
             .then((dbWorkout) => {
                 res.json(dbWorkout);
-            })
-            .catch((err) => {
-                res.json(err);
             });
     })
 
