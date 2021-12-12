@@ -13,11 +13,11 @@ TA
 
 ## Screenshots
 
-![screenshot]()
+![screenshot](./images/Homepage.PNG)
 
-![screenshot2]()
+![screenshot2](./images/Exercise.PNG)
 
-![screenshot3]()
+![screenshot3](./images/Graphs.PNG)
 
 
 # Link

@@ -1,6 +1,5 @@
 const Workout = require('../models/workout.js');
 const path = require('path');
-const mongoose = require('mongoose');
 
 module.exports = function(app) {
 
@@ -32,7 +31,7 @@ module.exports = function(app) {
 
     app.put('/api/workouts/:id', function(req, res) {
         console.log(req)
-        Workout.findByIdAndUpdate(mongoose.mongo.ObjectId(req.params.id) , { $push: { exercises: req.body }})
+        Workout.findByIdAndUpdate(req.params.id, { $push: { exercises: req.body }})
             .then(function(workout) {
             res.json(workout);
         })
